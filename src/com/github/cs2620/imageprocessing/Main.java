@@ -75,6 +75,14 @@ public class Main {
                     break;
                 case "reducecolor":
                     image = image.reduceColor();
+                    break;
+                case "colorspace":
+                    image = image.getColorSpace();
+                    break;
+                case "wipfilter":
+                    image = image.reduceColor();
+                    image.kernelBySize();
+                    //image = image.edgeDetection();
                 case "none":
                     break;
                 default:

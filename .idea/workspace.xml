@@ -2,45 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d7a58ad-804b-4ca0-a185-eef99c281553" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_javalin_javalin_3_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_client_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_http_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_io_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_security_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_server_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_servlet_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_webapp_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_xml_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_api_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_client_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_common_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_server_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_websocket_websocket_servlet_9_4_20_v20190813.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_3_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_3_31.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_26.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_simple_1_7_26.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/BufferedImageCloner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/00.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01.png" beforeDir="false" afterPath="$PROJECT_DIR$/01.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GraphicsSprintOneExperiments.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GraphicsSprintOneExperiments.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bananaeightbit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bananaout.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eaglein.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eagleout.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GraphicsSprintOneExperiments/GraphicsSprintOneExperiments$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GraphicsSprintOneExperiments/GraphicsSprintOneExperiments.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GraphicsSprintOneExperiments.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/00.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/MyImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/MyImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Pixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/cs2620/imageprocessing/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/cs2620/imageprocessing/MyImage$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/cs2620/imageprocessing/MyImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/cs2620/imageprocessing/Pixel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/cs2620/imageprocessing/Pixel.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -58,10 +30,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/GraphicsSprintOneExperiments.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="238">
               <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
               <folding>
-                <element signature="e#1668#1694#0" expanded="true" />
+                <element signature="e#1252#1278#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
+            <state relative-caret-position="436">
+              <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,8 +54,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/MyImage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="207" column="17" selection-start-line="207" selection-start-column="17" selection-end-line="207" selection-end-column="17" />
+            <state relative-caret-position="538">
+              <caret line="336" column="64" selection-start-line="336" selection-start-column="64" selection-end-line="336" selection-end-column="64" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/BufferedImageCloner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,8 +78,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Pixel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1513">
-              <caret line="93" selection-start-line="93" selection-end-line="93" />
+            <state relative-caret-position="17">
+              <caret line="130" column="5" selection-start-line="130" selection-start-column="5" selection-end-line="131" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -142,10 +126,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/github/cs2620/imageprocessing/PixelInterface.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/PixelInterface.java" />
+        <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/GraphicsSprintOneExperiments.java" />
         <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Pixel.java" />
+        <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/BufferedImageCloner.java" />
         <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Main.java" />
         <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/MyImage.java" />
-        <option value="$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/GraphicsSprintOneExperiments.java" />
       </list>
     </option>
   </component>
@@ -182,8 +167,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,9 +224,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27132195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -298,33 +284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Pixel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="76" column="48" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/GraphicsSprintOneExperiments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
-          <folding>
-            <element signature="e#1668#1694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/PixelInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -332,10 +291,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Pixel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="130" column="5" selection-start-line="130" selection-start-column="5" selection-end-line="131" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/GraphicsSprintOneExperiments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
+          <folding>
+            <element signature="e#1252#1278#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/BufferedImageCloner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/github/cs2620/imageprocessing/MyImage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="207" column="17" selection-start-line="207" selection-start-column="17" selection-end-line="207" selection-end-column="17" />
+        <state relative-caret-position="538">
+          <caret line="336" column="64" selection-start-line="336" selection-start-column="64" selection-end-line="336" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
