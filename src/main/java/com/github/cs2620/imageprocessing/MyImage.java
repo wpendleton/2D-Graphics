@@ -115,31 +115,32 @@ public class MyImage {
   private List<Integer> generateColorSpace(int complexity) {
         List<Integer> means = new ArrayList<Integer>();
         List<Integer> counts = new ArrayList<Integer>();
-        List<Integer> rMeans = new ArrayList<Integer>();
-        List<Integer> gMeans = new ArrayList<Integer>();
-        List<Integer> bMeans = new ArrayList<Integer>();
+        List<Long> rMeans = new ArrayList<Long>();
+        List<Long> gMeans = new ArrayList<Long>();
+        List<Long> bMeans = new ArrayList<Long>();
         List<Integer> adjustedMeans = new ArrayList<Integer>();
-        Random rand = new Random(System.currentTimeMillis());
+        Random rand = new Random(System.currentTimeMillis()/10);
         for (int i = 0; i < complexity; i++){ //TODO: Check for duplicates
             Pixel randPx = new Pixel(bufferedImage.getRGB(rand.nextInt(bufferedImage.getWidth()), rand.nextInt(bufferedImage.getHeight())));
             int thisMean = randPx.getRGB();
             means.add(thisMean);
-            rMeans.add(0);
-            gMeans.add(0);
-            bMeans.add(0);
+            rMeans.add(0l);
+            gMeans.add(0l);
+            bMeans.add(0l);
             adjustedMeans.add(0);
             counts.add(0);
         }
-        for (int i = 0; i < 10; i++) { //10 iterations of k-means
+        System.out.println("randomly chosen values: " + means);
+        for (int i = 0; i < 30; i++) { //30 iterations of k-means
             for (int y = 0; y < bufferedImage.getHeight(); y++) {
                 for (int x = 0; x < bufferedImage.getWidth(); x++) {
                     int px = bufferedImage.getRGB(x, y);
+                    Color original = new Color(px);
                     int nearest = findNearestMatch(px, means);
-                    Color clr = new Color(nearest);
                     int index = means.indexOf(nearest);
-                    rMeans.set(index, rMeans.get(index) + clr.getRed());
-                    gMeans.set(index, gMeans.get(index) + clr.getGreen());
-                    bMeans.set(index, bMeans.get(index) + clr.getBlue());
+                    rMeans.set(index, rMeans.get(index) + original.getRed());
+                    gMeans.set(index, gMeans.get(index) + original.getGreen());
+                    bMeans.set(index, bMeans.get(index) + original.getBlue());
                     counts.set(index, counts.get(index) + 1);
                 }
             }
@@ -147,10 +148,10 @@ public class MyImage {
                 int count = counts.get(j);
                 if (count != 0)
                 {
-                    int r = rMeans.get(j) / count;
-                    int g = gMeans.get(j) / count;
-                    int b = bMeans.get(j) / count;
-                    Color clr = new Color(r, g, b);
+                    long r = rMeans.get(j) / count;
+                    long g = gMeans.get(j) / count;
+                    long b = bMeans.get(j) / count;
+                    Color clr = new Color((int)r, (int)g, (int)b);
                     adjustedMeans.set(j, clr.getRGB());
                 }
                 else
@@ -159,6 +160,7 @@ public class MyImage {
                 }
             }
             means = adjustedMeans;
+            System.out.println("means: " + means.toString());
         }
         return means;
   }
