@@ -76,6 +76,11 @@ public class Main {
               }
             image.reduceColor(complexity);
             break;
+          case "blurColor":
+              image.kernelBlurColor(1);
+              break;
+          case "edgeSharpColor":
+              break;
           case "slice":
             final int intArg = Integer.parseInt(arg);
             image.all(p -> p.slice(intArg));

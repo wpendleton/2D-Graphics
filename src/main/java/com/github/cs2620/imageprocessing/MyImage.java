@@ -87,39 +87,61 @@ public class MyImage {
   }
 
   public MyImage reduceColor(int complexity){
-      
+        int w = bufferedImage.getWidth();
+        int h = bufferedImage.getHeight();
         List<Integer> colors = generateColorSpace(complexity);
         
-        for (int y = 0; y < bufferedImage.getHeight(); y++) {
-            for (int x = 0; x < bufferedImage.getWidth(); x++) {
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
                 
-                int rgbValues[][] = new int[bufferedImage.getWidth()][bufferedImage.getHeight()];
+                int rgbValues[][] = new int[w][h];
                 
                 int oldColor = bufferedImage.getRGB(x, y);
-                Pixel oldPixel = new Pixel(oldColor);
-                
                 int newColor = findNearestMatch(oldColor, colors);
-                Pixel newPixel = new Pixel(newColor);
                 
                 int difference = oldColor - newColor;
+                int diffPart = difference >> 2;
                 
                 rgbValues[x][y] += newColor;
                 
-                if (x+1 < bufferedImage.getWidth()){
-                    rgbValues[x+1][y] += (int)((float)difference * 7 / 16);
+                if(x+1 < w){
+                    rgbValues[x+1][y] += diffPart << 1;
+                }
+                if(y+1 < h){
+                    rgbValues[x][y+1] += diffPart;
+                    if(x-1 > 0){
+                        rgbValues[x-1][y+1] += diffPart;
+                    }
+                } 
+                
+                /*int diffPart = difference >> 5;
+                if (x+1 < w){ //Burkes
+                    rgbValues[x+1][y] += diffPart << 3;
                 }
                 
-                if(x-1 >= 0 && y+1 < bufferedImage.getHeight()){
-                    rgbValues[x-1][y+1] += (int)((float)difference * 3 / 16);
+                if (x+2 < w){
+                    rgbValues[x+2][y] += diffPart << 2;
                 }
                 
-                if(y+1 < bufferedImage.getHeight()){
-                    rgbValues[x][y+1] += (int)((float)difference * 5 / 16);
+                if(x-2 >= 0 && y+1 < h){
+                    rgbValues[x-2][y+1] += diffPart << 1;
                 }
                 
-                if(x+1 < bufferedImage.getWidth() && y+1 < bufferedImage.getHeight()){
-                    rgbValues[x+1][y+1] += (int)((float)difference * 1 / 16);
+                if(x-1 >= 0 && y+1 < h){
+                    rgbValues[x-1][y+1] += diffPart << 2;
                 }
+                
+                if(y+1 < h){
+                    rgbValues[x][y+1] += diffPart << 3;
+                }
+                
+                if(x+1 < w && y+1 < h){
+                    rgbValues[x+1][y+1] += diffPart << 2;
+                }
+                
+                if(x+2 < w && y+1 < bufferedImage.getHeight()){
+                    rgbValues[x+2][y+1] += diffPart << 1;
+                }*/
                 
                 bufferedImage.setRGB(x, y, rgbValues[x][y]);
             }
