@@ -71,10 +71,11 @@
                       <div>
                         <v-img :src="'./img/' + src + '/reduceColor,' + complexity"></v-img>
                       </div>
-                      <div>Adjusted Value Histogram</div>
+                    </div>
+                    <div v-if="process.name=='EffectLayering'">
                       <div>
-                        <v-img :src="'./img/' + src + '/reduceColor,' + complexity + ':histogram'">
-                      </div>
+                        <v-img :src="'./img/' + src + '/reduceColor,16:blurColor:edgeSharpColor'"></v-img>
+                    </div>
                     </div>
                     <div v-if="process.name=='RGBChannels'">
                       <v-row>
@@ -233,7 +234,7 @@
       vuetify: new Vuetify(),
       data: {
         src: "",
-        complexity: 128,
+        complexity: 16,
         process: {},
         thumbNails: [],
         rows: [
@@ -241,6 +242,10 @@
             type: "color",
             name: "ColorReduction",
             title: "Sprint Filter"
+          },
+          {
+            type: "color",
+            name: "EffectLayering",
           },
           {
             type: "color",
