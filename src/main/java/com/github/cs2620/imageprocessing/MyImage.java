@@ -87,26 +87,41 @@ public class MyImage {
   }
 
   public MyImage reduceColor(int complexity){
+      
         List<Integer> colors = generateColorSpace(complexity);
-        int redBias = 0;
-        int greenBias = 0;
-        int blueBias = 0;
+        
         for (int y = 0; y < bufferedImage.getHeight(); y++) {
             for (int x = 0; x < bufferedImage.getWidth(); x++) {
-                int px = bufferedImage.getRGB(x, y);
-                Pixel oldPx = new Pixel(px);
-                int r = (oldPx.getRed() + redBias);
-                int g = (oldPx.getGreen() + greenBias);
-                int b = (oldPx.getBlue() + blueBias);
-                oldPx = new Pixel(r, g, b);
-                px = oldPx.getRGB();
-                int updated = findNearestMatch(px, colors);
-                oldPx = new Pixel(px);
-                Pixel newPx = new Pixel(updated);
-                redBias = oldPx.getRed() - newPx.getRed();
-                greenBias = oldPx.getGreen() - newPx.getGreen();
-                blueBias = oldPx.getBlue() - newPx.getBlue();
-                bufferedImage.setRGB(x, y, updated);
+                
+                int rgbValues[][] = new int[bufferedImage.getWidth()][bufferedImage.getHeight()];
+                
+                int oldColor = bufferedImage.getRGB(x, y);
+                Pixel oldPixel = new Pixel(oldColor);
+                
+                int newColor = findNearestMatch(oldColor, colors);
+                Pixel newPixel = new Pixel(newColor);
+                
+                int difference = oldColor - newColor;
+                
+                rgbValues[x][y] += newColor;
+                
+                if (x+1 < bufferedImage.getWidth()){
+                    rgbValues[x+1][y] += (int)((float)difference * 7 / 16);
+                }
+                
+                if(x-1 >= 0 && y+1 < bufferedImage.getHeight()){
+                    rgbValues[x-1][y+1] += (int)((float)difference * 3 / 16);
+                }
+                
+                if(y+1 < bufferedImage.getHeight()){
+                    rgbValues[x][y+1] += (int)((float)difference * 5 / 16);
+                }
+                
+                if(x+1 < bufferedImage.getWidth() && y+1 < bufferedImage.getHeight()){
+                    rgbValues[x+1][y+1] += (int)((float)difference * 1 / 16);
+                }
+                
+                bufferedImage.setRGB(x, y, rgbValues[x][y]);
             }
         }
         return this;
@@ -115,32 +130,31 @@ public class MyImage {
   private List<Integer> generateColorSpace(int complexity) {
         List<Integer> means = new ArrayList<Integer>();
         List<Integer> counts = new ArrayList<Integer>();
-        List<Long> rMeans = new ArrayList<Long>();
-        List<Long> gMeans = new ArrayList<Long>();
-        List<Long> bMeans = new ArrayList<Long>();
+        List<Integer> rMeans = new ArrayList<Integer>();
+        List<Integer> gMeans = new ArrayList<Integer>();
+        List<Integer> bMeans = new ArrayList<Integer>();
         List<Integer> adjustedMeans = new ArrayList<Integer>();
-        Random rand = new Random(System.currentTimeMillis()/10);
+        Random rand = new Random(System.currentTimeMillis());
         for (int i = 0; i < complexity; i++){ //TODO: Check for duplicates
             Pixel randPx = new Pixel(bufferedImage.getRGB(rand.nextInt(bufferedImage.getWidth()), rand.nextInt(bufferedImage.getHeight())));
             int thisMean = randPx.getRGB();
             means.add(thisMean);
-            rMeans.add(0l);
-            gMeans.add(0l);
-            bMeans.add(0l);
+            rMeans.add(0);
+            gMeans.add(0);
+            bMeans.add(0);
             adjustedMeans.add(0);
             counts.add(0);
         }
-        System.out.println("randomly chosen values: " + means);
-        for (int i = 0; i < 30; i++) { //30 iterations of k-means
+        for (int i = 0; i < 10; i++) { //10 iterations of k-means
             for (int y = 0; y < bufferedImage.getHeight(); y++) {
                 for (int x = 0; x < bufferedImage.getWidth(); x++) {
                     int px = bufferedImage.getRGB(x, y);
-                    Color original = new Color(px);
                     int nearest = findNearestMatch(px, means);
+                    Color clr = new Color(nearest);
                     int index = means.indexOf(nearest);
-                    rMeans.set(index, rMeans.get(index) + original.getRed());
-                    gMeans.set(index, gMeans.get(index) + original.getGreen());
-                    bMeans.set(index, bMeans.get(index) + original.getBlue());
+                    rMeans.set(index, rMeans.get(index) + clr.getRed());
+                    gMeans.set(index, gMeans.get(index) + clr.getGreen());
+                    bMeans.set(index, bMeans.get(index) + clr.getBlue());
                     counts.set(index, counts.get(index) + 1);
                 }
             }
@@ -148,10 +162,10 @@ public class MyImage {
                 int count = counts.get(j);
                 if (count != 0)
                 {
-                    long r = rMeans.get(j) / count;
-                    long g = gMeans.get(j) / count;
-                    long b = bMeans.get(j) / count;
-                    Color clr = new Color((int)r, (int)g, (int)b);
+                    int r = rMeans.get(j) / count;
+                    int g = gMeans.get(j) / count;
+                    int b = bMeans.get(j) / count;
+                    Color clr = new Color(r, g, b);
                     adjustedMeans.set(j, clr.getRGB());
                 }
                 else
@@ -160,7 +174,6 @@ public class MyImage {
                 }
             }
             means = adjustedMeans;
-            System.out.println("means: " + means.toString());
         }
         return means;
   }
@@ -199,6 +212,59 @@ public class MyImage {
             }
         }
         return result;
+    }
+  
+  void kernelBlurColor(int size) {
+      int sizeOneSide = size;
+      size = size*2+1;
+        float[][] kernel = new float[size][size];
+
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                kernel[y][x] = 0;
+                if (x == 1 && y == 1) {
+                    kernel[y][x] = 1.0f;
+                }
+            }
+        }
+
+        BufferedImage temp = BufferedImageCloner.clone(bufferedImage);
+        for (int y = 0; y < bufferedImage.getHeight(); y++) {
+            for (int x = 0; x < bufferedImage.getWidth(); x++) {
+                float redSum = 0;
+                float greenSum = 0;
+                float blueSum = 0;
+                for(int ky = -sizeOneSide; ky <= sizeOneSide; ky++){
+                    for(int kx = -sizeOneSide; kx <=sizeOneSide; kx++){
+                        int color_int = 0;
+
+                        int px = x + kx;
+                        int py = y + ky;
+                        if(px >= 0 && px < bufferedImage.getWidth()  && py >= 0 && py < bufferedImage.getHeight()){
+                            color_int =  temp.getRGB(px, py);
+                        }
+                        Pixel p = new Pixel(color_int);
+                        float red = p.getRed();
+                        float green = p.getGreen();
+                        float blue = p.getBlue();
+                        redSum += (red);
+                        greenSum += (green);
+                        blueSum += (blue);
+                    }
+                }
+                int intRedSum = (int)(redSum / (size*size));
+                int intGreenSum = (int)(greenSum / (size*size));
+                int intBlueSum = (int)(blueSum / (size*size));
+                bufferedImage.setRGB(x,y, new Pixel(intRedSum, intGreenSum, intBlueSum).getRGB());
+            }
+        }
+    }
+
+    void kernelBySize(){
+        int kernelAmount = ((bufferedImage.getHeight() + bufferedImage.getWidth()) / 2) / 200;
+        System.out.println("Kerneling with size of " + kernelAmount);
+        this.kernelBlurColor(kernelAmount);
+        
     }
   
   public int[] getGrayscaleHistogram() {
