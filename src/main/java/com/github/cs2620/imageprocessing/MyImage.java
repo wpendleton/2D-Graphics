@@ -90,60 +90,62 @@ public class MyImage {
         int w = bufferedImage.getWidth();
         int h = bufferedImage.getHeight();
         List<Integer> colors = generateColorSpace(complexity);
+        int rgbValues[][] = new int[w][h];
+        int rValues[][] = new int[w][h];
+        int gValues[][] = new int[w][h];
+        int bValues[][] = new int[w][h];
         
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
                 
-                int rgbValues[][] = new int[w][h];
-                
                 int oldColor = bufferedImage.getRGB(x, y);
+                Pixel oldPx = new Pixel(oldColor);
+                
+                int oldR = Math.min(Math.max(oldPx.getRed() + rValues[x][y], 0), 255);
+                int oldG = Math.min(Math.max(oldPx.getGreen() + gValues[x][y], 0), 255);
+                int oldB = Math.min(Math.max(oldPx.getBlue() + bValues[x][y], 0), 255);
+                
+                //oldColor = (oldR << 16) + (oldG << 8) + oldB;
+                oldColor = new Color(oldR, oldG, oldB).getRGB();
+                
                 int newColor = findNearestMatch(oldColor, colors);
+                Pixel newPx = new Pixel(newColor);
                 
-                int difference = oldColor - newColor;
-                int diffPart = difference >> 2;
+                int newR = newPx.getRed();
+                int newG = newPx.getGreen();
+                int newB = newPx.getBlue();
                 
-                rgbValues[x][y] += newColor;
+                int diffPartR = (oldR - newR) / 16;
+                int diffPartG = (oldG - newG) / 16;
+                int diffPartB = (oldB - newB) / 16;
+                
+                rValues[x][y] += newR;
+                gValues[x][y] += newG;
+                bValues[x][y] += newB;
                 
                 if(x+1 < w){
-                    rgbValues[x+1][y] += diffPart << 1;
+                    rValues[x+1][y] += diffPartR * 7;
+                    gValues[x+1][y] += diffPartG * 7;
+                    bValues[x+1][y] += diffPartB * 7;
                 }
                 if(y+1 < h){
-                    rgbValues[x][y+1] += diffPart;
+                    rValues[x][y+1] += diffPartR * 5;
+                    gValues[x][y+1] += diffPartG * 5;
+                    bValues[x][y+1] += diffPartB * 5;
                     if(x-1 > 0){
-                        rgbValues[x-1][y+1] += diffPart;
+                        rValues[x-1][y+1] += diffPartR * 3;
+                        gValues[x-1][y+1] += diffPartG * 3;
+                        bValues[x-1][y+1] += diffPartB * 3;
                     }
-                } 
-                
-                /*int diffPart = difference >> 5;
-                if (x+1 < w){ //Burkes
-                    rgbValues[x+1][y] += diffPart << 3;
+                    if(x+1 < w){
+                        rValues[x+1][y+1] += diffPartR;
+                        gValues[x+1][y+1] += diffPartG;
+                        bValues[x+1][y+1] += diffPartB;
+                    }
                 }
                 
-                if (x+2 < w){
-                    rgbValues[x+2][y] += diffPart << 2;
-                }
-                
-                if(x-2 >= 0 && y+1 < h){
-                    rgbValues[x-2][y+1] += diffPart << 1;
-                }
-                
-                if(x-1 >= 0 && y+1 < h){
-                    rgbValues[x-1][y+1] += diffPart << 2;
-                }
-                
-                if(y+1 < h){
-                    rgbValues[x][y+1] += diffPart << 3;
-                }
-                
-                if(x+1 < w && y+1 < h){
-                    rgbValues[x+1][y+1] += diffPart << 2;
-                }
-                
-                if(x+2 < w && y+1 < bufferedImage.getHeight()){
-                    rgbValues[x+2][y+1] += diffPart << 1;
-                }*/
-                
-                bufferedImage.setRGB(x, y, rgbValues[x][y]);
+                int finalColor = (newR << 16) + (newG << 8) + newB;
+                bufferedImage.setRGB(x, y, finalColor);
             }
         }
         return this;
