@@ -65,8 +65,25 @@ public class Main {
         }
 
         switch (thisMod) {
-          case "reduceColor":
+            case "reduceColorv1":
+                image.reduceColorv1();
+            break;
+            case "reduceColorv2":
+                image.reduceColorv2();
+            break;
+            case "reduceColorv3":
               int complexity = 256;
+              try{
+                  complexity = Integer.parseInt(arg);
+              }
+              catch(Exception e)
+              {
+                  e.printStackTrace();
+              }
+            image.reduceColorv3(complexity);
+            break;
+          case "reduceColor":
+              complexity = 256;
               try{
                   complexity = Integer.parseInt(arg);
               }

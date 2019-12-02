@@ -17,7 +17,13 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class MyImage {
 
@@ -86,6 +92,91 @@ public class MyImage {
 
   }
 
+  public MyImage reduceColorv1(){
+        Map<Integer, Long> counts = new HashMap<>();
+        for (int y = 0; y < bufferedImage.getHeight(); y++){
+            for (int x = 0; x < bufferedImage.getWidth(); x++){
+                int px = bufferedImage.getRGB(x,y);
+                if (counts.get(px) == null){
+                    counts.put(px, (long)1);
+                } else {
+                    counts.replace(px, counts.get(px) + 1);
+                }
+            }
+        }
+        List<Map.Entry<Integer, Long>> list = new LinkedList<Map.Entry<Integer, Long>>(counts.entrySet());
+        List<Map.Entry<Integer, Long>> filtered = list.stream().filter(l -> l.getValue() > Math.min(bufferedImage.getHeight(), bufferedImage.getWidth())).collect(Collectors.toList());
+        Collections.sort(filtered, new Comparator<Map.Entry<Integer, Long>>(){public int compare(Map.Entry<Integer, Long> o1, Map.Entry<Integer, Long> o2){return o1.getValue().compareTo(o2.getValue());}});
+        for (int y = 0; y < bufferedImage.getHeight(); y++){
+            for (int x = 0; x < bufferedImage.getWidth(); x++){
+                int px = bufferedImage.getRGB(x, y);
+                int updated = findNearestMatchv1(px, filtered);
+                bufferedImage.setRGB(x, y, updated);
+            }
+        }
+        return this;
+    }
+  
+   private int findNearestMatchv1(int px, List<Map.Entry<Integer, Long>> colors){
+        int result = 0;
+        float resultDif = 255;
+        Color clr = new Color(px);
+        int r = clr.getRed();
+        int g = clr.getGreen();
+        int b = clr.getBlue();
+        for(Map.Entry<Integer, Long> e : colors){
+            int candidate = e.getKey();
+            Color candClr = new Color(candidate);
+            int cr = candClr.getRed();
+            int cg = candClr.getGreen();
+            int cb = candClr.getBlue();
+            float dif = (Math.abs(r - cr) + Math.abs(g - cg) + Math.abs(b - cb)) / 3;
+            if (dif < resultDif){
+                result = e.getKey();
+                resultDif = dif;
+            }
+        }
+        return result;
+    }
+  
+   public MyImage reduceColorv2(){
+        List<Integer> colors = generateColorSpace();
+        for (int y = 0; y < bufferedImage.getHeight(); y++) {
+            for (int x = 0; x < bufferedImage.getWidth(); x++) {
+                int px = bufferedImage.getRGB(x, y);
+                int updated = findNearestMatch(px, colors);
+                Color clr = new Color(updated);
+                Pixel pixel = new Pixel(updated);
+                pixel = pixel.slice(7);
+                if (pixel.getRGB() == 0){
+                    float[] hsb = new float[3];
+                    Color.RGBtoHSB(clr.getRed(), clr.getGreen(), clr.getBlue(), hsb);
+                    if (hsb[2] >= .5)
+                    {
+                        hsb[2] -= .25;
+                    }
+                    clr = new Color(clr.HSBtoRGB(hsb[0], hsb[1], hsb[2]));
+                }
+                updated = clr.getRGB();
+                bufferedImage.setRGB(x, y, updated);
+            }
+        }
+        return this;
+    }
+   
+   public MyImage reduceColorv3(int complexity){
+        List<Integer> colors = generateColorSpace(complexity);
+        for (int y = 0; y < bufferedImage.getHeight(); y++) {
+            for (int x = 0; x < bufferedImage.getWidth(); x++) {
+                int px = bufferedImage.getRGB(x, y);
+                int updated = findNearestMatch(px, colors);
+                bufferedImage.setRGB(x, y, updated);
+            }
+        }
+        return this;
+    }
+
+   
   public MyImage reduceColor(int complexity){
         int w = bufferedImage.getWidth();
         int h = bufferedImage.getHeight();

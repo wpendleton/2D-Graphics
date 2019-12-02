@@ -64,6 +64,35 @@
                         </div>
                       </v-list>
                     </v-menu>
+                      <div v-if="process.name=='ColorReductionProgress'">
+                      <v-row>
+                        <v-col cols="6">
+                          <div>Counting Pixels</div>
+                          <div>
+                            <v-img :src="'./img/' + src + '/reduceColorv1'">
+                          </div>
+                        </v-col>
+                        <v-col cols="6">
+                          <div>Preset Pallet</div>
+                          <div>
+                            <v-img :src="'./img/' + src + '/reduceColorv2'">
+                          </div>
+                        </v-col>
+
+                        <v-col cols="6">
+                          <div>K-means algorithm</div>
+                          <div>
+                            <v-img :src="'./img/' + src + '/reduceColorv3,32'">
+                          </div>
+                        </v-col>
+                        <v-col cols="6">
+                          <div>K-means with Floyd-Steinberg Dithering</div>
+                          <div>
+                            <v-img :src="'./img/' + src + '/reduceColor,32'">
+                          </div>
+                        </v-col>
+                      </v-row>
+                    </div>
                     <div v-if="process.name=='ColorReduction'">
                       <div>
                           <v-slider v-model="complexity" min="1" max="256">
@@ -240,8 +269,12 @@
         rows: [
           {
             type: "color",
-            name: "ColorReduction",
+            name: "ColorReductionProgress",
             title: "Sprint Filter"
+          },
+          {
+            type: "color",
+            name: "ColorReduction"
           },
           {
             type: "color",
